@@ -1,11 +1,10 @@
 import csv
 from models.libro import Libro
 
-
 libros=[]
-def leerArchivo():
-      
 
+
+def leerArchivo():
       with open("./libros.csv", newline='') as File:  
             reader = csv.reader(File)
             for row in reader:
@@ -15,27 +14,25 @@ def leerArchivo():
             libros.pop(0)
             print("\n### Cargando Libros ###")
             print(f"==> Se han cargado: {len(libros)} libros ")
-          
-                
-
+  
 
 def listarLibros():
     print("\n### Listado de Libros ###")
     print("\nID""        " "Título""          ""Género""          ""ISBN""         ""Editorial""            ""Autor(es)")
     print("=======================================================================================================")
     for libro in libros:
-      print(libro.id,"      ", libro.titulo,"      ", libro.genero,"      ", libro.ISBN,"      ", libro.editorial,"      ", libro.autores )
+      libro.imprimir_libro()
 
 
 def agregarLibro():
       
       print("\n### Registrar Nuevo Libro ### ")
-      id = int(input("Ingrese Id: "))
-      titulo = str(input("Ingrese Título: "))
-      genero = str(input("Ingrese Genero: "))
-      ISBN = int(input("Ingrese ISBN: "))
-      editorial= str(input("Ingrese Editorial: "))
-      autores = str(input("Ingrese Autor(es) semarado por comas ',': "))
+      id = input("Ingrese Id (solo números): ")
+      titulo = input("Ingrese Título: ")
+      genero = input("Ingrese Genero: ")
+      ISBN =input("Ingrese ISBN: ")
+      editorial= input("Ingrese Editorial: ")
+      autores = input("Ingrese Autor(es) semarado por comas ',': ")
       
       nuevo_l = Libro(id,titulo, genero, ISBN, editorial, autores)
       libros.append(nuevo_l)     
@@ -43,15 +40,38 @@ def agregarLibro():
 def eliminarLibro():
       listarLibros()
       print("\n#### Eliminar Libro #### \n")
-      id_eliminar = input("Ingrese el ID del libro a eliminar: ")
+      id_eliminar = int(input("Ingrese el ID del libro a eliminar: "))
       for libro in libros:
         if libro.id == id_eliminar:
           libros.remove(libro)
-          print (f"=> Estas eliminando el libro: {libro.titulo} con el ID: {libro.id}")
+          print (f"=> Haz eliminado el libro: '{libro.titulo}', con el ID: {libro.id}")
 
 def buscarISBN_titulo():
-      print("buscarISBN_titulo =) ")
-  
+    print("\n#### Buscar Libro por ISBN o por Título #### \n")
+    print("\n -> Para buscar libro por ISBN escribe: 1 ")
+    print(" -> Para buscar libro por Título escribe: 2")
+    entrada = int(input(" ==> Ingresa número: "))
+    if entrada == 1:
+      busc_ISBN = str(input(" ===> Ingresa ISBN del libro a buscar: "))
+      for libro in libros:
+        if busc_ISBN == libro.ISBN:
+            print(f"\n=> El ISBN '{busc_ISBN}', pertenece al libro: {libro.titulo}\n")
+            print("\nID""        " "Título""          ""Género""          ""ISBN""         ""Editorial""            ""Autor(es)")
+            print("=======================================================================================================")
+            libro.imprimir_libro()
+    elif entrada == 2:
+        busc_titulo = str(input("Ingresa título del libro a buscar: "))
+        busc_titulo = busc_titulo.capitalize()
+        for libro in libros:
+          if busc_titulo == libro.titulo:
+            print(f"\n=> El libro con titulo '{busc_titulo}', tiene los siguientes datos:\n")
+            print("\nID""        " "Título""          ""Género""          ""ISBN""         ""Editorial""            ""Autor(es)")
+            print("=======================================================================================================")
+            libro.imprimir_libro()
+
+
+
+
 def ordenar_titulo():
       print("ordenar_titulo =) ")
 
@@ -75,7 +95,7 @@ def menu ():
   while opcion != 11:
     #mostrar menu
     print( "\n ¡Hola! Te presentamos nuestra aplicación administradora de libros")
-    print( "Aquí puedes realizar cualquiera de las siguientes opciones: \n")
+    print( " Aquí puedes realizar cualquiera de las siguientes opciones: \n")
     print("Opción 1: Leer archivo de disco duro (.txt o csv) que carga 3 libros.")
     print("Opción 2: Listar libros.")
     print("Opción 3: Agregar libro.")
