@@ -14,7 +14,7 @@ class Libro:
       autores_sin_espacio = []
       for autor in autores:
         autores_sin_espacio.append(autor.strip())
-      self.autores = autores_sin_espacio  
+      self.autores = autores_sin_espacio
 
 
 
