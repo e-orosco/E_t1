@@ -1,25 +1,44 @@
 import csv
 from models.libro import Libro
 
+
+libros=[]
 def leerArchivo():
-      libros=[]
+      
 
       with open("./libros.csv", newline='') as File:  
             reader = csv.reader(File)
             for row in reader:
-                
-                libros.append(libros)
-            Libro(*row)
+              libro = Libro(*row)
+              libros.append(libro)
+            
             libros.pop(0)
-            print(f"\n => se han carga: {len(libros)} libros ")
+            print("\n### Cargando Libros ###")
+            print(f"==> Se han cargado: {len(libros)} libros ")
+          
                 
 
 
 def listarLibros():
-      print("listarLibros =)")
+    print("\n### Listado de Libros ###")
+    print("\nID""        " "Título""          ""Género""          ""ISBN""         ""Editorial""            ""Autor(es)")
+    print("=======================================================================================================")
+    for libro in libros:
+      print(libro.id,"      ", libro.titulo,"      ", libro.genero,"      ", libro.ISBN,"      ", libro.editorial,"      ", libro.autores )
+
 
 def agregarLibro():
-      print("agregarLibro =)")
+      
+      print("\n### Registrar Nuevo Libro ### ")
+      id = int(input("Ingrese Id: "))
+      titulo = str(input("Ingrese Título: "))
+      genero = str(input("Ingrese Genero: "))
+      ISBN = int(input("Ingrese ISBN: "))
+      editorial= str(input("Ingrese Editorial: "))
+      autores = str(input("Ingrese Autor(es) semarado por comas ',': "))
+      
+      nuevo_l = Libro(id,titulo, genero, ISBN, editorial, autores)
+      libros.append(nuevo_l)     
 
 def eliminarLibro():
       print("eliminarLibro =) ")
@@ -49,7 +68,7 @@ def menu ():
   fin = 11
   while opcion != 11:
     #mostrar menu
-    print( "\n ¡Hola! Te presentamos nuestra base de datos de libros")
+    print( "\n ¡Hola! Te presentamos nuestra aplicación administradora de libros")
     print( "Aquí puedes realizar cualquiera de las siguientes opciones: \n")
     print("Opción 1: Leer archivo de disco duro (.txt o csv) que carga 3 libros.")
     print("Opción 2: Listar libros.")
@@ -62,7 +81,7 @@ def menu ():
     print("Opción 9: Editar o actualizar datos de un libro (título, género, ISBN, editorial y autores).")
     print("Opción 10: Guardar libros en archivo de disco duro (.txt o csv).")
     print("Opción 11: Para salir")
-    opcion = int(input("\n--> Ingresa la opción a ejecutar:"))
+    opcion = int(input("\n--> Ingresa la opción a ejecutar: "))
 
   
     if opcion == 1:
