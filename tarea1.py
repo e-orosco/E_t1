@@ -41,7 +41,13 @@ def agregarLibro():
       libros.append(nuevo_l)     
 
 def eliminarLibro():
-      print("eliminarLibro =) ")
+      listarLibros()
+      print("\n#### Eliminar Libro #### \n")
+      id_eliminar = input("Ingrese el ID del libro a eliminar: ")
+      for libro in libros:
+        if libro.id == id_eliminar:
+          libros.remove(libro)
+          print (f"=> Estas eliminando el libro: {libro.titulo} con el ID: {libro.id}")
 
 def buscarISBN_titulo():
       print("buscarISBN_titulo =) ")
