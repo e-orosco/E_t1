@@ -4,13 +4,18 @@ class Libro:
   EDITORIALES = {"Alfaguara", "Planeta", "Siglo XXI", "Seix Barral","Urano"}
 
 
-  def __init__(self, id:int, titulo:str, genero:str, ISBN:int, editorial:str, autores:list):
+  def __init__(self, id:int, titulo:str, genero:str, ISBN:int, editorial:str, autores:str):
       self.id = id
       self.titulo = titulo
       self.genero = genero
       self.ISBN = ISBN
       self.editorial = editorial
-      self.autores = autores.split(",")
+      autores = autores.split(",") 
+      autores_sin_espacio = []
+      for autor in autores:
+        autores_sin_espacio.append(autor.strip())
+      self.autores = autores_sin_espacio  
+
 
 
 
