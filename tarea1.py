@@ -68,7 +68,8 @@ def ordenar_titulo():
       print("ordenar_titulo =) ")
 
 def busc_porAutor_editorial_genero():
-      print("busc_porAutor_editorial_genero =) ")
+    print("busc_porAutor_editorial_genero =) ")
+
 
 
 def busc_porNum_autores():
