@@ -5,71 +5,68 @@ libros=[]
 
 
 def leerArchivo():
-      with open("./libros.csv", newline='') as File:  
-            reader = csv.reader(File)
-            for row in reader:
-              libro = Libro(*row)
-              libros.append(libro)
-            
-            libros.pop(0)
-            print("\n### Cargando Libros ###")
-            print(f"==> Se han cargado: {len(libros)} libros ")
+  with open("./libros.csv", newline='') as File:  
+        reader = csv.reader(File)
+        for row in reader:
+          libro = Libro(*row)
+          libros.append(libro)
+        
+        libros.pop(0)
+        print("\n### Cargando Libros ###")
+        print(f"==> Se han cargado: {len(libros)} libros ")
   
 
 def listarLibros():
-    print("\n### Listado de Libros ###")
-    print("\nID""        " "Título""          ""Género""          ""ISBN""         ""Editorial""            ""Autor(es)")
-    print("=======================================================================================================")
-    for libro in libros:
-      libro.imprimir_libro()
+  print("\n### Listado de Libros ###")
+  print("\nID""        " "Título""          ""Género""          ""ISBN""         ""Editorial""            ""Autor(es)")
+  print("=======================================================================================================")
+  for libro in libros:
+    libro.imprimir_libro()
 
 
 def agregarLibro():
-      
-      print("\n### Registrar Nuevo Libro ### ")
-      id = input("Ingrese Id (solo números): ")
-      titulo = input("Ingrese Título: ")
-      genero = input("Ingrese Genero: ")
-      ISBN =input("Ingrese ISBN: ")
-      editorial= input("Ingrese Editorial: ")
-      autores = input("Ingrese Autor(es) semarado por comas ',': ")
-      
-      nuevo_l = Libro(id,titulo, genero, ISBN, editorial, autores)
-      libros.append(nuevo_l)     
+  print("\n### Registrar Nuevo Libro ### ")
+  id = input("Ingrese Id (solo números): ")
+  titulo = input("Ingrese Título: ")
+  genero = input("Ingrese Genero: ")
+  ISBN =input("Ingrese ISBN: ")
+  editorial= input("Ingrese Editorial: ")
+  autores = input("Ingrese Autor(es) semarado por comas ',': ")
+  
+  nuevo_l = Libro(id,titulo, genero, ISBN, editorial, autores)
+  libros.append(nuevo_l)     
 
 def eliminarLibro():
-      listarLibros()
-      print("\n#### Eliminar Libro #### \n")
-      id_eliminar = int(input("Ingrese el ID del libro a eliminar: "))
-      for libro in libros:
-        if libro.id == id_eliminar:
-          libros.remove(libro)
-          print (f"=> Haz eliminado el libro: '{libro.titulo}', con el ID: {libro.id}")
+  listarLibros()
+  print("\n#### Eliminar Libro #### \n")
+  id_eliminar = int(input("Ingrese el ID del libro a eliminar: "))
+  for libro in libros:
+    if libro.id == id_eliminar:
+      libros.remove(libro)
+      print (f"=> Haz eliminado el libro: '{libro.titulo}', con el ID: {libro.id}")
 
 def buscarISBN_titulo():
-    print("\n#### Buscar Libro por ISBN o por Título #### \n")
-    print("\n -> Para buscar libro por ISBN escribe: 1 ")
-    print(" -> Para buscar libro por Título escribe: 2")
-    entrada = int(input(" ==> Ingresa número: "))
-    if entrada == 1:
-      busc_ISBN = str(input(" ===> Ingresa ISBN del libro a buscar: "))
+  print("\n#### Buscar Libro por ISBN o por Título #### \n")
+  print("\n -> Para buscar libro por ISBN escribe: 1 ")
+  print(" -> Para buscar libro por Título escribe: 2")
+  entrada = int(input(" ==> Ingresa número: "))
+  if entrada == 1:
+    busc_ISBN = str(input(" ===> Ingresa ISBN del libro a buscar: "))
+    for libro in libros:
+      if busc_ISBN == libro.ISBN:
+          print(f"\n=> El ISBN '{busc_ISBN}', pertenece al libro: '{libro.titulo}', tiene la siguiente información:\n")
+          print("\nID""        " "Título""          ""Género""          ""ISBN""         ""Editorial""            ""Autor(es)")
+          print("=======================================================================================================")
+          libro.imprimir_libro()
+  elif entrada == 2:
+      busc_titulo = str(input("Ingresa título del libro a buscar: "))
+      busc_titulo = busc_titulo
       for libro in libros:
-        if busc_ISBN == libro.ISBN:
-            print(f"\n=> El ISBN '{busc_ISBN}', pertenece al libro: {libro.titulo}\n")
-            print("\nID""        " "Título""          ""Género""          ""ISBN""         ""Editorial""            ""Autor(es)")
-            print("=======================================================================================================")
-            libro.imprimir_libro()
-    elif entrada == 2:
-        busc_titulo = str(input("Ingresa título del libro a buscar: "))
-        busc_titulo = busc_titulo.capitalize()
-        for libro in libros:
-          if busc_titulo == libro.titulo:
-            print(f"\n=> El libro con titulo '{busc_titulo}', tiene los siguientes datos:\n")
-            print("\nID""        " "Título""          ""Género""          ""ISBN""         ""Editorial""            ""Autor(es)")
-            print("=======================================================================================================")
-            libro.imprimir_libro()
-
-
+        if busc_titulo.lower() == libro.titulo.lower():
+          print(f"\n=> El libro con titulo '{busc_titulo}', tiene la siguiente información:\n")
+          print("\nID""        " "Título""          ""Género""          ""ISBN""         ""Editorial""            ""Autor(es)")
+          print("=======================================================================================================")
+          libro.imprimir_libro()
 
 
 def ordenar_titulo():
