@@ -31,7 +31,7 @@ def listarLibros():
   for libro in libros:
     libro.imprimir_libro()
 
-    repetir_opciones()
+  repetir_opciones()
 
 def agregarLibro():
 
@@ -56,7 +56,8 @@ def eliminarLibro():
       libros.remove(libro)
       print (f"=> Haz eliminado el libro: '{libro.titulo}', con el ID: {libro.id}")
 
-      repetir_opciones()
+    repetir_opciones()
+
 def buscarISBN_titulo():
   print("\n#### Buscar Libro por ISBN o por Título #### \n")
   print("\n -> Para buscar libro por ISBN escribe: 1 ")
@@ -79,7 +80,8 @@ def buscarISBN_titulo():
           print("\nID""        " "Título""          ""Género""          ""ISBN""         ""Editorial""            ""Autor(es)")
           print("=======================================================================================================")
           libro.imprimir_libro()
-
+          
+  repetir_opciones()
 
 def ordenar_titulo():
       print("ordenar_titulo =) ")
