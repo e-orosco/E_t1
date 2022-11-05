@@ -22,7 +22,7 @@ def leerArchivo():
         libros.pop(0)
         print("\n### Cargando Libros ###")
         print(f"==> Se han cargado: {len(libros)} libros ")
-      #repetir_opciones()
+     
 
 def listarLibros():
   print("\n### Listado de Libros ###")
@@ -31,7 +31,7 @@ def listarLibros():
   for libro in libros:
     libro.imprimir_libro()
 
-  repetir_opciones()
+
 
 def agregarLibro():
 
@@ -45,7 +45,7 @@ def agregarLibro():
   
   nuevo_l = Libro(id,titulo, genero, ISBN, editorial, autores)
   libros.append(nuevo_l) 
-  repetir_opciones()    
+     
 
 def eliminarLibro():
   listarLibros()
@@ -56,7 +56,6 @@ def eliminarLibro():
       libros.remove(libro)
       print (f"=> Haz eliminado el libro: '{libro.titulo}', con el ID: {libro.id}")
 
-    repetir_opciones()
 
 def buscarISBN_titulo():
   print("\n#### Buscar Libro por ISBN o por Título #### \n")
@@ -80,8 +79,8 @@ def buscarISBN_titulo():
           print("\nID""        " "Título""          ""Género""          ""ISBN""         ""Editorial""            ""Autor(es)")
           print("=======================================================================================================")
           libro.imprimir_libro()
-          
-  repetir_opciones()
+
+  
 
 def ordenar_titulo():
       print("ordenar_titulo =) ")
@@ -124,24 +123,34 @@ def menu():
   
     if opcion == 1:
         leerArchivo()
+        repetir_opciones()
     elif opcion == 2:
           listarLibros()
+          repetir_opciones()
     elif opcion == 3:
           agregarLibro()
+          repetir_opciones()
     elif opcion == 4:
           eliminarLibro()
+          repetir_opciones()
     elif opcion == 5:
           buscarISBN_titulo()
+          repetir_opciones()
     elif opcion == 6:
           ordenar_titulo()
+          repetir_opciones()
     elif opcion == 7:
           busc_porAutor_editorial_genero()
+          repetir_opciones()
     elif opcion == 8:
           busc_porNum_autores()
+          repetir_opciones()
     elif opcion == 9:
           editar_Libro()
+          repetir_opciones()
     elif opcion == 10:
           guardar_libro_disco()
+          repetir_opciones()
     elif opcion == 11:
         os._exit(1)
     else:
