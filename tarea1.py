@@ -5,8 +5,26 @@ from models.libro import Libro
 
 libros=[]
 
+def index_generos():
+        generos = set()
+        for libro in libros:
+            generos.add(libro.genero)
+        return generos
+
+def index_editoriales():
+        editoriales = set()
+        for libro in libros:
+            editoriales.add(libro.editorial)
+        return editoriales
+def index_autores():
+        autores = set()
+        for libro in libros:
+            autores.add(*libro.autores)
+        return autores       
+
+
 def repetir_opciones():
-  dato = input("\nRegresar al menu? si o no: ").lower()
+  dato = input("\n * ¿Regresar al menu? si o no: ").lower()
   if dato == 'si':
         menu()
   else:
@@ -85,21 +103,103 @@ def buscarISBN_titulo():
 def ordenar_titulo():
       print("ordenar_titulo =) ")
 
+       
+
 def busc_porAutor_editorial_genero():
-      print("busc_porAutor_editorial_genero =) ")
+      
+  print("\n#### Buscar Libro por Autor, Editorial o por Género #### \n")
+  print("\n -> Para buscar libro(s) por Autor escribe: 1 ")
+  print(" -> Para buscar libro(s) por Editorial escribe: 2")
+  print(" -> Para buscar libro(s) por Género escribe: 3")
+
+  entrada = int(input("\n ==> Ingresa número: "))
+  if entrada == 1:
+
+    print("\n=> Autores disponibles:")
+    print(index_autores())
+
+    busc_autor = str(input("\n===> Ingresa nombre de Autor a buscar: "))
+    print(f"\n=> El autor '{busc_autor}', tiene los siguientes libros:\n")
+    print("\nID""        " "Título""          ""Género""          ""ISBN""         ""Editorial""            ""Autor(es)")
+    print("=======================================================================================================")
+    for libro in libros:
+      for autor in libro.autores:
+        if busc_autor.lower() == autor.lower():     
+          libro.imprimir_libro()
+
+  elif entrada == 2:
+      
+    print("\n=> Editoriales disponibles:") # imprime las editoriales registradas.
+    print(index_editoriales())
+
+    busc_editorial = str(input("\n===> Ingresa nombre de Editorial a buscar: "))
+    print(f"\n=> La editorial '{busc_editorial}', tiene los siguientes libros:\n")
+    print("\nID""        " "Título""          ""Género""          ""ISBN""         ""Editorial""            ""Autor(es)")
+    print("=======================================================================================================")
+    for libro in libros:
+      if busc_editorial.lower() == libro.editorial.lower():
+        libro.imprimir_libro()
+
+  elif entrada == 3:
+
+      print("\n=> Géneros literarios disponibles: ") # imprime los generos literarios registrados.
+      print(index_generos())
+
+      busc_genero = str(input("\n===> Ingresa el género de libro a buscar: "))
+      print(f"\n=> El género'{busc_genero}', tiene los siguientes libros:\n")
+      print("\nID""        " "Título""          ""Género""          ""ISBN""         ""Editorial""            ""Autor(es)")
+      print("=======================================================================================================")
+      for libro in libros:
+        if busc_genero.lower() == libro.genero.lower():
+          libro.imprimir_libro()
 
 
 def busc_porNum_autores():
       print("busc_porNum_autores =)")
 
 def editar_Libro():
-      print("editar_Libro")
+  id_editar = input("==> Ingresar número de ID a editar: ")
+
+  for libro in libros:
+    if int(libro.id )== int(id_editar):
+
+      print (f"\n--> Haz elegido el libro: '{libro.titulo}', con el ID: {id_editar} \n")
+      print ("=> Escribe en los atributos del libro que desar modificar,")
+      print("de lo contrario presiona Enter para continuar: \n")
+
+      titulo = input("Inserte nuevo titulo del libro: ")
+      genero = input("Inserte nuevo genero del libro: ")
+      ISBN = input("Inserte nuevo ISBN del libro: ")
+      editorial = input("Inserte nuevo editorial del libro: ")
+      autores = input("Inserte nuevo(s) autor(es) del libro (separados por comas ): ")
+      
+#Guarda informacion, si la variable tiene un valor( es decir, si no está vacia)      
+      if bool(titulo):
+        libro.titulo = titulo
+      if bool(genero):
+        libro.genero = genero
+      if bool(ISBN):
+        libro.ISBN = ISBN
+      if bool(editorial):
+        libro.editorial = editorial
+      if bool(titulo):
+        libro.autores = autores.split(",")
+
+       
+        
+      
+
+  print(f"\n==> Se ha modificado el libro con el ID: '{id_editar}' correctamente")
+  print("Para ver los cambios,regresa al menú anterior y marca la opción 2 (Listar libros)")
+
+
+
 
 def guardar_libro_disco():
       print("guardar_libro_disco")
 
 
-#creando la funcion menu
+####################### creando la funcion menu ########################
 def menu():
   opcion = 0
   fin = 11
@@ -107,7 +207,7 @@ def menu():
     #mostrar menu
     print( "\n ¡Hola! Te presentamos nuestra aplicación administradora de libros")
     print( " Aquí puedes realizar cualquiera de las siguientes opciones: \n")
-    print("Opción 1: Leer archivo de disco duro (.txt o csv) que carga 3 libros.")
+    print("Opción 1: Leer archivo de disco duro, que carga 3 libros.")
     print("Opción 2: Listar libros.")
     print("Opción 3: Agregar libro.")
     print("Opción 4: Eliminar libro.")
@@ -157,7 +257,4 @@ def menu():
         print("Opcion inválida, ingrese un numero del 1 al 11")
         menu()
           #exit
-
-#llamando a la funcion menu
-if __name__ == "__main__":
-    menu()
+menu()
