@@ -135,7 +135,16 @@ def editar_Libro():
   print("Para ver los cambios,regresa al menú anterior y marca la opción 2 (Listar libros)")
 
 def guardar_libro_disco():
-  print("guardar_libro_disco")
+  print("Guardar archivo")
+  with open("libros.csv", 'r') as ar:
+    reader = csv.reader(ar)
+    data = [line for line in reader]
+    namefile = input('Digite el nombre del archivo a guardar (ejemplo: libros.txt o libros.csv''):')
+  with open(namefile, 'w') as f:
+    f.write("Datos del archivo\n")
+    for list in data:
+      f.write("\n")
+      f.write(','.join(list))
 
 
 #creando la funcion menu
