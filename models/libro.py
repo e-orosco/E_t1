@@ -3,7 +3,6 @@ class Libro:
   AUTOTRES = { "Stephen Kin", "Gabriel García Márquez", "Alexandre Dumas", "William Gibson", "Juan Bas"}
   EDITORIALES = {"Alfaguara", "Planeta", "Siglo XXI", "Seix Barral","Urano"}
 
-
   def __init__(self, id:int, titulo:str, genero:str, ISBN:str, editorial:str, autores:str):
     if id.isnumeric():
       self.id = int(id)

@@ -1,4 +1,6 @@
 import csv
+import os
+import time
 from models.libro import Libro
 
 libros=[]
@@ -14,8 +16,18 @@ def leerArchivo():
             libros.pop(0)
             print("\n### Cargando Libros ###")
             print(f"==> Se han cargado: {len(libros)} libros ")
-  
 
+
+    #repetir_opciones()
+                
+def repetir_opciones():
+    dato = input("\nRegresar al menu? si o no: ").lower()
+    if dato == 'si':
+        menu()
+    else:
+        os._exit(0)
+
+  
 def listarLibros():
     print("\n### Listado de Libros ###")
     print("\nID""        " "Título""          ""Género""          ""ISBN""         ""Editorial""            ""Autor(es)")
@@ -23,6 +35,7 @@ def listarLibros():
     for libro in libros:
       libro.imprimir_libro()
 
+    repetir_opciones()
 
 def agregarLibro():
       
@@ -35,7 +48,9 @@ def agregarLibro():
       autores = input("Ingrese Autor(es) semarado por comas ',': ")
       
       nuevo_l = Libro(id,titulo, genero, ISBN, editorial, autores)
-      libros.append(nuevo_l)     
+      libros.append(nuevo_l)
+
+      repetir_opciones()
 
 def eliminarLibro():
       listarLibros()
@@ -45,6 +60,8 @@ def eliminarLibro():
         if libro.id == id_eliminar:
           libros.remove(libro)
           print (f"=> Haz eliminado el libro: '{libro.titulo}', con el ID: {libro.id}")
+
+      repetir_opciones()
 
 def buscarISBN_titulo():
     print("\n#### Buscar Libro por ISBN o por Título #### \n")
@@ -64,11 +81,11 @@ def buscarISBN_titulo():
         busc_titulo = busc_titulo.capitalize()
         for libro in libros:
           if busc_titulo == libro.titulo:
-            print(f"\n=> El libro con titulo '{busc_titulo}', tiene los siguientes datos:\n")
+            print(f"\n=> El libro con titulo '{busc_titulo}', tiene la siguiente información:\n")
             print("\nID""        " "Título""          ""Género""          ""ISBN""         ""Editorial""            ""Autor(es)")
             print("=======================================================================================================")
             libro.imprimir_libro()
-
+    
 
 
 
@@ -77,6 +94,7 @@ def ordenar_titulo():
 
 def busc_porAutor_editorial_genero():
       print("busc_porAutor_editorial_genero =) ")
+
 
 def busc_porNum_autores():
       print("busc_porNum_autores =)")
@@ -89,7 +107,7 @@ def guardar_libro_disco():
 
 
 #creando la funcion menu
-def menu ():
+def menu():
   opcion = 0
   fin = 11
   while opcion != 11:
@@ -131,7 +149,12 @@ def menu ():
     elif opcion == 10:
           guardar_libro_disco()
     elif opcion == 11:
-          exit
+        os._exit(1)
+    else:
+        print("Opcion inválida, ingrese un numero del 1 al 11")
+        menu()
+          #exit
 
 #llamando a la funcion menu
-menu()
+if __name__ == "__main__":
+    menu()
