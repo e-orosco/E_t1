@@ -101,7 +101,17 @@ def buscarISBN_titulo():
   
 
 def ordenar_titulo():
-      print("ordenar_titulo =) ")
+    lista_titulo = []
+    print("Orden de libros por titulo =) ")
+    with open("libros.csv", 'r') as ar:
+        reader = csv.reader(ar)
+        for i in reader:
+            id, titulo, genero, ISBN, editorial, autores, *a = i
+            lista_titulo.append(titulo)
+        lista_titulo.pop(0)
+        lista_titulo.sort()
+        for count, valor in enumerate(zip(lista_titulo), start=1):
+            print(count, " - ", *valor)
 
        
 
