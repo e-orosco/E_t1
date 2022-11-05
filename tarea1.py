@@ -6,7 +6,7 @@ from models.libro import Libro
 libros=[]
 
 def repetir_opciones():
-  dato = input("\nRegresar al menu? si o no: ").lower()
+  dato = input("\nDeseas regresar al menu? Escribe si o no: ").lower()
   if dato == 'si':
         menu()
   else:
@@ -83,30 +83,59 @@ def buscarISBN_titulo():
   
 
 def ordenar_titulo():
-    lista_titulo = []
-    print("Orden de libros por titulo =) ")
-    with open("libros.csv", 'r') as ar:
-        reader = csv.reader(ar)
-        for i in reader:
-            id, titulo, genero, ISBN, editorial, autores, *a = i
-            lista_titulo.append(titulo)
-        lista_titulo.pop(0)
-        lista_titulo.sort()
-        for count, valor in enumerate(zip(lista_titulo), start=1):
-            print(count, " - ", *valor)
+  lista_titulo = []
+  print("#### Orden de libros por titulo ####")
+  with open("libros.csv", 'r') as ar:
+      reader = csv.reader(ar)
+      for i in reader:
+          id, titulo, genero, ISBN, editorial, autores, *a = i
+          lista_titulo.append(titulo)
+      lista_titulo.pop(0)
+      lista_titulo.sort()
+      for count, valor in enumerate(zip(lista_titulo), start=1):
+          print(count, " - ", *valor)
+
 
 def busc_porAutor_editorial_genero():
-      print("busc_porAutor_editorial_genero =) ")
+    print("")
 
 
 def busc_porNum_autores():
-      print("busc_porNum_autores =)")
+  print("busc_porNum_autores =)")
 
 def editar_Libro():
-      print("editar_Libro")
+  id_editar = input("==> Ingresar número de ID a editar: ")
+
+  for libro in libros:
+      if int(libro.id) == int(id_editar):
+
+        print(f"\n--> Haz elegido el libro: '{libro.titulo}', con el ID: {id_editar} \n")
+        print("=> Escribe en los atributos del libro que desar modificar,")
+        print("de lo contrario presiona Enter para continuar: \n")
+
+        titulo = input("Inserte nuevo titulo del libro: ")
+        genero = input("Inserte nuevo genero del libro: ")
+        ISBN = input("Inserte nuevo ISBN del libro: ")
+        editorial = input("Inserte nuevo editorial del libro: ")
+        autores = input("Inserte nuevo(s) autor(es) del libro (separados por comas ): ")
+
+        # Guarda informacion, si la variable tiene un valor( es decir, si no está vacia)
+        if bool(titulo):
+            libro.titulo = titulo
+        if bool(genero):
+            libro.genero = genero
+        if bool(ISBN):
+            libro.ISBN = ISBN
+        if bool(editorial):
+            libro.editorial = editorial
+        if bool(titulo):
+            libro.autores = autores.split(",")
+
+  print(f"\n==> Se ha modificado el libro con el ID: '{id_editar}' correctamente")
+  print("Para ver los cambios,regresa al menú anterior y marca la opción 2 (Listar libros)")
 
 def guardar_libro_disco():
-      print("guardar_libro_disco")
+  print("guardar_libro_disco")
 
 
 #creando la funcion menu
@@ -169,5 +198,5 @@ def menu():
           #exit
 
 #llamando a la funcion menu
-if __name__ == "__main__":
-    menu()
+
+menu()

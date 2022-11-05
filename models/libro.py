@@ -28,14 +28,14 @@ class Libro:
   def set_titulo(self, titulo):
           self.titulo = titulo
 
-  def set_genero(self, Genero):
-          self.genero = Genero
+  def set_genero(self, genero):
+          self.genero = genero
 
   def set_ISBN(self, ISBN):
           self.ISBN = ISBN
 
-  def set_Editorial(self, Editorial):
-          self.editorial = Editorial
+  def set_Editorial(self, editorial):
+          self.editorial = editorial
 
-  def set_Autor(self, Autor):
-          self.nombre = Autor
+  def set_Autor(self, autores):
+          self.autores = autores
