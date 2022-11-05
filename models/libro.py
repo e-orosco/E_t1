@@ -18,6 +18,7 @@ class Libro:
       self.autores = autores_sin_espacio  
 
 
+
   def imprimir_libro(self):
     print (self.id , "      ",self.titulo,"      ",self.genero,"      ",self.ISBN,"      ",self.editorial,"      ",self.autores)
 

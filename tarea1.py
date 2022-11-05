@@ -1,8 +1,16 @@
 import csv
+import os
+import time
 from models.libro import Libro
 
 libros=[]
 
+def repetir_opciones():
+  dato = input("\nRegresar al menu? si o no: ").lower()
+  if dato == 'si':
+        menu()
+  else:
+        os._exit(0)
 
 def leerArchivo():
   with open("./libros.csv", newline='') as File:  
@@ -14,7 +22,7 @@ def leerArchivo():
         libros.pop(0)
         print("\n### Cargando Libros ###")
         print(f"==> Se han cargado: {len(libros)} libros ")
-  
+      #repetir_opciones()
 
 def listarLibros():
   print("\n### Listado de Libros ###")
@@ -23,8 +31,10 @@ def listarLibros():
   for libro in libros:
     libro.imprimir_libro()
 
+    repetir_opciones()
 
 def agregarLibro():
+
   print("\n### Registrar Nuevo Libro ### ")
   id = input("Ingrese Id (solo números): ")
   titulo = input("Ingrese Título: ")
@@ -34,7 +44,8 @@ def agregarLibro():
   autores = input("Ingrese Autor(es) semarado por comas ',': ")
   
   nuevo_l = Libro(id,titulo, genero, ISBN, editorial, autores)
-  libros.append(nuevo_l)     
+  libros.append(nuevo_l) 
+  repetir_opciones()    
 
 def eliminarLibro():
   listarLibros()
@@ -45,6 +56,7 @@ def eliminarLibro():
       libros.remove(libro)
       print (f"=> Haz eliminado el libro: '{libro.titulo}', con el ID: {libro.id}")
 
+      repetir_opciones()
 def buscarISBN_titulo():
   print("\n#### Buscar Libro por ISBN o por Título #### \n")
   print("\n -> Para buscar libro por ISBN escribe: 1 ")
@@ -75,6 +87,7 @@ def ordenar_titulo():
 def busc_porAutor_editorial_genero():
       print("busc_porAutor_editorial_genero =) ")
 
+
 def busc_porNum_autores():
       print("busc_porNum_autores =)")
 
@@ -86,7 +99,7 @@ def guardar_libro_disco():
 
 
 #creando la funcion menu
-def menu ():
+def menu():
   opcion = 0
   fin = 11
   while opcion != 11:
@@ -128,7 +141,12 @@ def menu ():
     elif opcion == 10:
           guardar_libro_disco()
     elif opcion == 11:
-          exit
+        os._exit(1)
+    else:
+        print("Opcion inválida, ingrese un numero del 1 al 11")
+        menu()
+          #exit
 
 #llamando a la funcion menu
-menu()
+if __name__ == "__main__":
+    menu()
