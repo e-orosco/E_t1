@@ -52,7 +52,6 @@ def listarLibros():
 
 
 def agregarLibro():
-
   print("\n### Registrar Nuevo Libro ### ")
   id = input("Ingrese Id (solo números): ")
   titulo = input("Ingrese Título: ")
@@ -101,17 +100,17 @@ def buscarISBN_titulo():
   
 
 def ordenar_titulo():
-    lista_titulo = []
-    print("Orden de libros por titulo =) ")
-    with open("libros.csv", 'r') as ar:
-        reader = csv.reader(ar)
-        for i in reader:
-            id, titulo, genero, ISBN, editorial, autores, *a = i
-            lista_titulo.append(titulo)
-        lista_titulo.pop(0)
-        lista_titulo.sort()
-        for count, valor in enumerate(zip(lista_titulo), start=1):
-            print(count, " - ", *valor)
+  lista_titulo = []
+  print("Orden de libros por titulo =) ")
+  with open("libros.csv", 'r') as ar:
+      reader = csv.reader(ar)
+      for i in reader:
+          id, titulo, genero, ISBN, editorial, autores, *a = i
+          lista_titulo.append(titulo)
+      lista_titulo.pop(0)
+      lista_titulo.sort()
+      for count, valor in enumerate(zip(lista_titulo), start=1):
+          print(count, " - ", *valor)
 
        
 
@@ -165,7 +164,22 @@ def busc_porAutor_editorial_genero():
 
 
 def busc_porNum_autores():
-      print("busc_porNum_autores =)")
+  print("\n#### Buscar según número de autores #### \n")
+  print("-> Escribe un número según la cantidad de autores que colaboraron en la elaboración de un libro:")
+
+  num_autores = int(input("===> Ingresa el número de autores a buscar: "))
+  print(f"\n=> Los libros con '{num_autores}' autor(es), son los siguientes:\n")
+  print("\nID""        " "Título""          ""Género""          ""ISBN""         ""Editorial""            ""Autor(es)")
+  print("=======================================================================================================")
+  for libro in libros:
+    if num_autores  == len(libro.autores): 
+      libro.imprimir_libro()
+
+
+
+
+
+
 
 def editar_Libro():
   id_editar = input("==> Ingresar número de ID a editar: ")
@@ -193,17 +207,10 @@ def editar_Libro():
       if bool(editorial):
         libro.editorial = editorial
       if bool(titulo):
-        libro.autores = autores.split(",")
-
-       
-        
-      
+        libro.autores = autores.split(",")   
 
   print(f"\n==> Se ha modificado el libro con el ID: '{id_editar}' correctamente")
   print("Para ver los cambios,regresa al menú anterior y marca la opción 2 (Listar libros)")
-
-
-
 
 def guardar_libro_disco():
       print("guardar_libro_disco")
