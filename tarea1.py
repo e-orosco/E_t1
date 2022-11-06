@@ -24,7 +24,8 @@ def index_autores():
 
 
 def repetir_opciones():
-  dato = input("\n * ¿Regresar al menu? si o no: ").lower()
+  dato = input("\n ¿Deseas regresar al menu? Escribe si o no: ").lower()
+
   if dato == 'si':
         menu()
   else:
@@ -101,7 +102,9 @@ def buscarISBN_titulo():
 
 def ordenar_titulo():
   lista_titulo = []
-  print("Orden de libros por titulo =) ")
+
+  print("#### Orden de libros por titulo ####")
+
   with open("libros.csv", 'r') as ar:
       reader = csv.reader(ar)
       for i in reader:
@@ -110,9 +113,7 @@ def ordenar_titulo():
       lista_titulo.pop(0)
       lista_titulo.sort()
       for count, valor in enumerate(zip(lista_titulo), start=1):
-          print(count, " - ", *valor)
-
-       
+          print(count, " - ", *valor)       
 
 def busc_porAutor_editorial_genero():
       
@@ -176,19 +177,15 @@ def busc_porNum_autores():
       libro.imprimir_libro()
 
 
-
-
-
-
-
 def editar_Libro():
   id_editar = input("==> Ingresar número de ID a editar: ")
 
   for libro in libros:
+
     if int(libro.id )== int(id_editar):
 
       print (f"\n--> Haz elegido el libro: '{libro.titulo}', con el ID: {id_editar} \n")
-      print ("=> Escribe en los atributos del libro que desar modificar,")
+      print ("=> Escribe en los atributos del libro que desas modificar,")
       print("de lo contrario presiona Enter para continuar: \n")
 
       titulo = input("Inserte nuevo titulo del libro: ")
@@ -209,11 +206,21 @@ def editar_Libro():
       if bool(titulo):
         libro.autores = autores.split(",")   
 
+
   print(f"\n==> Se ha modificado el libro con el ID: '{id_editar}' correctamente")
   print("Para ver los cambios,regresa al menú anterior y marca la opción 2 (Listar libros)")
 
 def guardar_libro_disco():
-      print("guardar_libro_disco")
+  print("Guardar archivo")
+  with open("libros.csv", 'r') as ar:
+    reader = csv.reader(ar)
+    data = [line for line in reader]
+    namefile = input('Digite el nombre del archivo a guardar (ejemplo: libros.txt o libros.csv''):')
+  with open(namefile, 'w') as f:
+    f.write("Datos del archivo\n")
+    for list in data:
+      f.write("\n")
+      f.write(','.join(list))
 
 
 ####################### creando la funcion menu ########################
@@ -274,4 +281,6 @@ def menu():
         print("Opcion inválida, ingrese un numero del 1 al 11")
         menu()
           #exit
+
+#llamando a la funcion menu
 menu()
