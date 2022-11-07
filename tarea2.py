@@ -59,9 +59,23 @@ def listar_pokemon_por_habilidad(ability):
 
 ####### MOSTRAR LISTA POR HABITAT #############
 
+def listar_pokemon_por_habitad(abith):
+  habitad_pokemones = []
+  if __name__ == '__main__':
+    url = f'https://pokeapi.co/api/v2/pokemon-habitat/{abith}'
+    response = requests.get(url)
+    if response.status_code == 200:
+      payload = response.json()
+      results = payload.get('pokemon_species', [])
 
+      if results:
+        for pokemon in results:
+          name = pokemon['name']
+          habitad_pokemones.append(name)
+  return habitad_pokemones
 
 ####### MOSTRAR LISTA POR TIPO #############
+
 
 
 def mostrar_resumen(resumen_pokemon_recibido):
@@ -192,41 +206,80 @@ def poke_menu():
       '''
     )
     print("\nIngresa la opcion del Habitad del Pokemón")
-    habitad_n = int(input("\nIngrese una opcion de Habilidad: "))
+    habilidad_n = int(input("\nIngrese una opcion de Habilidad: "))
 
-    if habitad_n == 1:
+    if habilidad_n == 1:
       print(" #### Lista de pokemones con Habilidad: stench ####")
-    elif habitad_n == 2:
+    elif habilidad_n == 2:
       print(" #### Lista de pokemones con Habilidad: drizzle ####")
-    elif habitad_n == 3:
+    elif habilidad_n == 3:
       print(" #### Lista de pokemones con Habilidad: speed-boos ####")
-    elif habitad_n == 4:
+    elif habilidad_n == 4:
       print(" #### Lista de pokemones con Habilidad: battle-armor ####")
-    elif habitad_n == 5:
+    elif habilidad_n == 5:
       print(" #### Lista de pokemones con Habilidad: sturdy ####")
-    elif habitad_n == 6:
+    elif habilidad_n == 6:
       print(" #### Lista de pokemones con Habilidad: damp ####")
-    elif habitad_n == 7:
+    elif habilidad_n == 7:
       print(" #### Lista de pokemones con Habilidad: limber ####")
-    elif habitad_n == 8:
+    elif habilidad_n == 8:
       print(" #### Lista de pokemones con Habilidad: sand-veil ####")
-    elif habitad_n == 9:
+    elif habilidad_n == 9:
       print(" #### Lista de pokemones con Habilidad: static ####")
     else:
       print("Opcion no valida")
 
-    habitad_pokemones = listar_pokemon_por_habilidad(habitad_n)
+    habitad_pokemones = listar_pokemon_por_habilidad(habilidad_n)
     for pokemon in habitad_pokemones:
       mostrar_resumen(conseguir_resumen_pokemon(pokemon))
     repetir_opciones()
 
   elif opcion == 4:
-        listar_pokemon_por_habitad()
-        repetir_opciones()
+    print("\n#### Lista de pokemon por Habita  ####")
+    print("Te mostramos algunas Habita de referencia de las 327 que existen")
+    print(
+      '''
+      Opcion 1:  Habita => cave
+      Opcion 2:  Habita => forest
+      Opcion 3:  Habita => grassland
+      Opcion 4:  Habita => mountain
+      Opcion 5:  Habita => rare
+      Opcion 6:  Habita => rough-terrain
+      Opcion 7:  Habita => sea
+      Opcion 8:  Habita => urban
+      Opcion 9:  Habita => waters-edge
+      '''
+    )
+    print("\nIngresa la opcion del Habitad del Pokemón")
+    habitad_n = int(input("\nIngrese una opcion de Habita: "))
+
+    if habitad_n == 1:
+      print(" #### Lista de pokemones con Habita: cave ####")
+    elif habitad_n == 2:
+      print(" #### Lista de pokemones con Habita: forest ####")
+    elif habitad_n == 3:
+      print(" #### Lista de pokemones con Habita: grassland ####")
+    elif habitad_n == 4:
+      print(" #### Lista de pokemones con Habita: mountain ####")
+    elif habitad_n == 5:
+      print(" #### Lista de pokemones con Habita: rare ####")
+    elif habitad_n == 6:
+      print(" #### Lista de pokemones con Habita: rough-terrain ####")
+    elif habitad_n == 7:
+      print(" #### Lista de pokemones con Habita: limber ####")
+    elif habitad_n == 8:
+      print(" #### Lista de pokemones con Habita: urban ####")
+    elif habitad_n == 9:
+      print(" #### Lista de pokemones con Habita: waters-edge ####")
+    else:
+      print("Opcion no valida")
+    tipo_pokemones = listar_pokemon_por_habitad(habitad_n)
+    for pokemon in tipo_pokemones:
+      mostrar_resumen(conseguir_resumen_pokemon(pokemon))
+    repetir_opciones()
 
   elif opcion == 5:
-        listar_pokemon_por_tipo()
-        repetir_opciones()
+      repetir_opciones()
     
 ### main ###  
 poke_menu()
