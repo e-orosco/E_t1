@@ -1,6 +1,7 @@
 import requests
 import os
 
+
 def __init__(self):
   self.__url = f"https://pokeapi.co/api/v2/"
 
@@ -248,23 +249,25 @@ def poke_menu():
     repetir_opciones()
 
   elif opcion == 4:
-    print("\n#### Lista de pokemon por Habita  ####")
-    print("Te mostramos algunas Habita de referencia de las 327 que existen")
+
+    print("\n#### Lista de pokemon por Habitat  ####")
+    print("Te mostramos algunas Habitat de referencia de las 327 que existen")
     print(
       '''
-      Opcion 1:  Habita => cave
-      Opcion 2:  Habita => forest
-      Opcion 3:  Habita => grassland
-      Opcion 4:  Habita => mountain
-      Opcion 5:  Habita => rare
-      Opcion 6:  Habita => rough-terrain
-      Opcion 7:  Habita => sea
-      Opcion 8:  Habita => urban
-      Opcion 9:  Habita => waters-edge
+      Opcion 1:  Habitat => cave
+      Opcion 2:  Habitat => forest
+      Opcion 3:  Habitat => grassland
+      Opcion 4:  Habitat => mountain
+      Opcion 5:  Habitat => rare
+      Opcion 6:  Habitat => rough-terrain
+      Opcion 7:  Habitat => sea
+      Opcion 8:  Habitat => urban
+      Opcion 9:  Habitat => waters-edge
       '''
     )
-    print("\nIngresa la opcion del Habitad del Pokemón")
-    habitad_n = int(input("\nIngrese una opcion de Habita: "))
+    print("\nIngresa la opcion del Habitat del Pokemón")
+    habitad_n = int(input("\nIngrese una opcion de Habitat: "))
+
 
     if habitad_n == 1:
       print(" #### Lista de pokemones con Habita: cave ####")
@@ -292,26 +295,23 @@ def poke_menu():
     repetir_opciones()
 
   elif opcion == 5:
-    print("\n#### Lista de pokemon por Tipo de pokemones  ####")
+
+    print("\n#### Lista de Tipo de pokemones  ####")
     print(
       '''
-      Opcion 1:   Tipo => normal
-      Opcion 2:   Tipo => fighting
-      Opcion 3:   Tipo => flying
-      Opcion 4:   Tipo => poison
-      Opcion 5:   Tipo => ground
-      Opcion 6:   Tipo => rock
-      Opcion 7:   Tipo => bug
-      Opcion 8:   Tipo => ghost
-      Opcion 9:   Tipo => steel
-      Opcion 10:  Tipo => fire
-      Opcion 11:  Tipo => water
-      Opcion 12:  Tipo => grass
-      Opcion 13:  Tipo => electric
-      Opcion 14:  Tipo => psychic
+      Opcion 1:   Tipo => normal              Opcion 2:   Tipo => fighting
+      Opcion 3:   Tipo => flying              Opcion 4:   Tipo => poison
+      Opcion 5:   Tipo => ground              Opcion 6:   Tipo => rock
+      Opcion 7:   Tipo => bug                 Opcion 8:   Tipo => ghost
+      Opcion 9:   Tipo => steel               Opcion 10:  Tipo => fire
+      Opcion 11:  Tipo => water               Opcion 12:  Tipo => grass
+      Opcion 13:  Tipo => electric            Opcion 14:  Tipo => psychic
+      Opcion 15:  Tipo => ice                 Opcion 16:  Tipo => dragon
+      Opcion 17:  Tipo => dark                Opcion 18:  Tipo => fairy
+      Opcion 19:  Tipo => unknown             Opcion 20:  Tipo => shadow
       '''
     )
-    print("\nIngresa la opcion del Tipo del Pokemón")
+    print("\nSelecciona la opcion del Tipo del Pokemón")
     tipo_n = int(input("\nIngrese una opcion del tipo de pokemon: "))
 
     if tipo_n == 1:
@@ -342,20 +342,19 @@ def poke_menu():
       print(" #### Lista de pokemones con Tipo: electric ####")
     elif tipo_n == 14:
       print(" #### Lista de pokemones con Tipo: psychic ####")
-    elif tipo_n == 8:
-      print(" #### Lista de pokemones con Tipo: ghost ####")
-    elif tipo_n == 9:
-      print(" #### Lista de pokemones con Tipo: steel ####")
-    elif tipo_n == 10:
-      print(" #### Lista de pokemones con Tipo: fire ####")
-    elif tipo_n == 11:
-      print(" #### Lista de pokemones con Tipo: water ####")
-    elif tipo_n == 12:
-      print(" #### Lista de pokemones con Tipo: grass ####")
-    elif tipo_n == 13:
-      print(" #### Lista de pokemones con Tipo: electric ####")
-    elif tipo_n == 14:
-      print(" #### Lista de pokemones con Tipo: psychic ####")
+    elif tipo_n == 15:
+      print(" #### Lista de pokemones con Tipo: ice  ####")
+    elif tipo_n == 16:
+      print(" #### Lista de pokemones con Tipo: dragon ####")
+    elif tipo_n == 17:
+      print(" #### Lista de pokemones con Tipo: dark ####")
+    elif tipo_n == 18:
+      print(" #### Lista de pokemones con Tipo: fairy ####")
+    elif tipo_n == 19:
+      print(" #### Lista de pokemones con Tipo: unknown  ####")
+    elif tipo_n == 20:
+      print(" #### Lista de pokemones con Tipo: shadow ####")
+      
     else:
       print("Opcion no valida")
     tipo_pokemones = listar_pokemon_por_tipo(tipo_n)
