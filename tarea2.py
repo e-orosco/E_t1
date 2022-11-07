@@ -4,6 +4,9 @@ import os
 def __init__(self):
   self.__url = f"https://pokeapi.co/api/v2/"
 
+
+####### MOSTRAR LISTA POR GENERACION #############
+
 def escoger_generacion(n_gen):
   lista_pokemones = []
   if __name__ == '__main__':
@@ -18,6 +21,48 @@ def escoger_generacion(n_gen):
                   name = pokemon['name']
                   lista_pokemones.append(name)
   return lista_pokemones
+
+
+####### MOSTRAR LISTA POR FORMA #############
+
+def listar_pokemon_por_forma(form):
+  form_pokemones=[]
+  if __name__ == '__main__':
+    url = f'https://pokeapi.co/api/v2/pokemon-shape/{form}'
+    response = requests.get(url)
+    if response.status_code == 200:
+      payload = response.json()
+      results = payload['pokemon_species']
+
+      if results:
+        for pokemon in results:
+          name = pokemon['name']
+          form_pokemones.append(name)
+  return form_pokemones
+
+####### MOSTRAR LISTA POR HABILIDAD #############
+def listar_pokemon_por_habilidad(ability):
+  ability_pokemones = []
+  if __name__ == '__main__':
+    url = f'https://pokeapi.co/api/v2/ability/{ability}'
+    response = requests.get(url)
+    if response.status_code == 200:
+      payload = response.json()
+      results = payload['pokemon']
+
+      if results:
+        for pokemon in results:
+          name = pokemon['pokemon']['name']
+          ability_pokemones.append(name)
+  return ability_pokemones
+
+
+####### MOSTRAR LISTA POR HABITAT #############
+
+
+
+####### MOSTRAR LISTA POR TIPO #############
+
 
 def mostrar_resumen(resumen_pokemon_recibido):
     nombreR = resumen_pokemon_recibido["nombre"]
@@ -63,29 +108,126 @@ def poke_menu():
   opcion = int(input("\n--> Ingresa la opción a ejecutar: "))
 
   if opcion == 1:
-    print("#### Listar pokemon por Generación  ####")
+    print("\n #### Lista pokemon por Generación  ####")
     print("\nIngresa una generación Pokemón del 1 al 8")
     num_generation = str(input("==> Ingrese  generación: "))
     lista_pokemones = escoger_generacion(num_generation)
     for pokemon in lista_pokemones:
       mostrar_resumen(conseguir_resumen_pokemon(pokemon))
-
     repetir_opciones()
+
   elif opcion == 2:
-        listar_pokemon_por_forma()
-        repetir_opciones()
+    print("\n #### Lista de pokemon por Forma  ####")
+    print(
+      '''
+      Opcion 1:  Forma => ball
+      Opcion 2:  Forma => squiggle
+      Opcion 3:  Forma => fish
+      Opcion 4:  Forma => arms
+      Opcion 5:  Forma => blob
+      Opcion 6:  Forma => upright
+      Opcion 7:  Forma => legs
+      Opcion 8:  Forma => quadruped
+      Opcion 9:  Forma => wings
+      Opcion 10: Forma => tentacles
+      Opcion 11: Forma => heads
+      Opcion 12: Forma => humanoid
+      Opcion 13: Forma => bug-wings
+      Opcion 14: Forma => armor
+      '''
+    )
+    print("\nElija la opcion de la Forma del Pokemón")
+    form_n = int(input("\n==> Ingrese la opcion de la forma a mostrar: "))
+
+    if form_n == 1:
+      print("\n #### Lista de pokemones con forma: Ball ####")
+    elif form_n == 2:
+      print("\n  #### Lista de pokemones con forma: Squiggle ####")
+    elif form_n == 3:
+      print("\n  #### Lista de pokemones con forma: Fish ####")
+    elif form_n == 4:
+      print("\n  #### Lista de pokemones con forma: Arms ####")
+    elif form_n == 5:
+      print("\n  #### Lista de pokemones con forma: Blob ####")
+    elif form_n == 6:
+      print("\n  #### Lista de pokemones con forma: Upright ####")
+    elif form_n == 7:
+      print("\n  #### Lista de pokemones con forma: Legs ####")
+    elif form_n == 8:
+      print("v #### Lista de pokemones con forma: Quadruped ####")
+    elif form_n == 9:
+      print("\n  #### Lista de pokemones con forma: Wings ####")
+    elif form_n == 10:
+      print("\n  ##### Lista de pokemones con forma: Tentacles ####")
+    elif form_n == 11:
+      print("\n  #### Lista de pokemones con forma: Heads ####")
+    elif form_n == 12:
+      print(" #### Lista de pokemones con forma: Humanoid ####")
+    elif form_n == 13:
+      print(" #### Lista de pokemones con forma: Bug-wings ####")
+    elif form_n == 14:
+      print(" #### Lista de pokemones con forma: Armor ####")
+    else:
+      print("Opcion no valida")
+    form_pokemones = listar_pokemon_por_forma(form_n)
+    for pokemon in form_pokemones:
+      mostrar_resumen(conseguir_resumen_pokemon(pokemon))
+
   elif opcion == 3:
-        listar_pokemon_por_habilidad()
-        repetir_opciones()
+    print("\n#### Lista de pokemon por Habilidades  ####")
+    print("Te mostramos algunas habilidades de referencia de las 327 que existen")
+    print(
+      '''
+      Opcion 1:  Habilidad => stench
+      Opcion 2:  Habilidad => drizzle
+      Opcion 3:  Habilidad => speed-boos
+      Opcion 4:  Habilidad => battle-armor
+      Opcion 5:  Habilidad => sturdy
+      Opcion 6:  Habilidad => damp
+      Opcion 7:  Habilidad => limber
+      Opcion 8:  Habilidad => sand-veil
+      Opcion 9:  Habilidad => static
+      Opcion ...:  Habilidad => ......
+      Opcion 327:  Habilidad => shield
+      '''
+    )
+    print("\nIngresa la opcion del Habitad del Pokemón")
+    habitad_n = int(input("\nIngrese una opcion de Habilidad: "))
+
+    if habitad_n == 1:
+      print(" #### Lista de pokemones con Habilidad: stench ####")
+    elif habitad_n == 2:
+      print(" #### Lista de pokemones con Habilidad: drizzle ####")
+    elif habitad_n == 3:
+      print(" #### Lista de pokemones con Habilidad: speed-boos ####")
+    elif habitad_n == 4:
+      print(" #### Lista de pokemones con Habilidad: battle-armor ####")
+    elif habitad_n == 5:
+      print(" #### Lista de pokemones con Habilidad: sturdy ####")
+    elif habitad_n == 6:
+      print(" #### Lista de pokemones con Habilidad: damp ####")
+    elif habitad_n == 7:
+      print(" #### Lista de pokemones con Habilidad: limber ####")
+    elif habitad_n == 8:
+      print(" #### Lista de pokemones con Habilidad: sand-veil ####")
+    elif habitad_n == 9:
+      print(" #### Lista de pokemones con Habilidad: static ####")
+    else:
+      print("Opcion no valida")
+
+    habitad_pokemones = listar_pokemon_por_habilidad(habitad_n)
+    for pokemon in habitad_pokemones:
+      mostrar_resumen(conseguir_resumen_pokemon(pokemon))
+    repetir_opciones()
+
   elif opcion == 4:
         listar_pokemon_por_habitad()
         repetir_opciones()
+
   elif opcion == 5:
         listar_pokemon_por_tipo()
         repetir_opciones()
     
 ### main ###  
 poke_menu()
-
-
 
