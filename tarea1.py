@@ -3,12 +3,6 @@ import os
 import time
 from models.libro import Libro
 
-GREEN = '\033[32m'
-BLUE = '\033[1;34m'
-YELLOW = '\033[1;33m'
-RESET = '\033[0;m'
-
-
 libros=[]
 
 def index_generos():
@@ -30,7 +24,7 @@ def index_autores():
 
 
 def repetir_opciones():
-  dato = input(YELLOW+"\n ¿Deseas regresar al menu? Escribe si o no: "+RESET).lower()
+  dato = input("\n ¿Deseas regresar al menu? Escribe si o no: ").lower()
 
   if dato == 'si':
         menu()
@@ -235,8 +229,8 @@ def menu():
   fin = 11
   while opcion != 11:
     #mostrar menu
-    print( BLUE+"\n ¡Hola! Te presentamos nuestra aplicación administradora de libros"+RESET)
-    print( GREEN+" Aquí puedes realizar cualquiera de las siguientes opciones: \n"+RESET)
+    print( "\n ¡Hola! Te presentamos nuestra aplicación administradora de libros")
+    print( " Aquí puedes realizar cualquiera de las siguientes opciones: \n")
     print("Opción 1: Leer archivo de disco duro, que carga 3 libros.")
     print("Opción 2: Listar libros.")
     print("Opción 3: Agregar libro.")
