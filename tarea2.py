@@ -2,6 +2,15 @@ import requests
 import os
 
 
+RED = '\033[31m'
+GREEN = '\033[32m'
+YELLOW = '\033[1;33m'
+BLUE = '\033[1;34m'
+MAGENTA = '\033[1;35m'
+CYAN = '\033[36m'
+
+RESET = '\033[0;m'
+
 def __init__(self):
   self.__url = f"https://pokeapi.co/api/v2/"
 
@@ -97,7 +106,7 @@ def mostrar_resumen(resumen_pokemon_recibido):
     lista_habilidadesR = resumen_pokemon_recibido["lista_de_habilidades"]
     url = resumen_pokemon_recibido["url"]
 
-    print("=========================================================")
+    print(CYAN+"==================================================================================================================="+RESET)
     print(f"Pokemon: {nombreR.capitalize()}")
     print(f"Habilidades: {', '.join(lista_habilidadesR)}")
     print(f"Url Pokemon: {url} ")
@@ -117,7 +126,7 @@ def conseguir_resumen_pokemon(nombre_pokemon: str) -> dict:
 
 #####  invita a regresar al menu ####
 def repetir_opciones():
-  dato = input("\n ¿Deseas regresar al menu anterior? escribe si o no: ").lower()
+  dato = input(YELLOW+"\n ¿Deseas regresar al menu anterior? escribe si o no: "+RESET).lower()
   if dato == 'si':
         poke_menu()
   else:
@@ -125,15 +134,15 @@ def repetir_opciones():
 
 #####  mostrar menu ######
 def poke_menu():
-  print( "\n#### ¡Hola! Te presentamos nuestra Pokeaplicación ####")
-  print( "-> Aquí puedes realizar cualquiera de las siguientes opciones: \n")
+  print( BLUE+"\n#### ¡Hola! Te presentamos nuestra Pokeaplicación ####"+RESET)
+  print( GREEN+"-> Aquí puedes realizar cualquiera de las siguientes opciones: \n"+RESET)
   print("Opción 1: Listar pokemons por generación.")
   print("Opción 2: Listar pokemons por forma.")
   print("Opción 3: Listar pokemons por habilidad.")
   print("Opción 4: Listar pokemons por habitad.")
   print("Opción 5: Listar pokemons por tipo.")
   
-  opcion = int(input("\n--> Ingresa la opción a ejecutar: "))
+  opcion = int(input(YELLOW+"\n--> Ingresa la opción a ejecutar: "+RESET))
 
   if opcion == 1:
     print("\n #### Lista pokemon por Generación  ####")
@@ -164,8 +173,8 @@ def poke_menu():
       Opcion 14: Forma => armor
       '''
     )
-    print("\nElija la opcion de la Forma del Pokemón")
-    form_n = int(input("\n==> Ingrese la opcion de la forma a mostrar: "))
+    print(BLUE+"\nElija la opcion de la Forma del Pokemón"+RESET)
+    form_n = int(input(GREEN+"\n==> Ingrese la opcion de la forma a mostrar: "+RESET))
 
     if form_n == 1:
       print("\n #### Lista de pokemones con forma: Ball ####")
@@ -200,6 +209,7 @@ def poke_menu():
     form_pokemones = listar_pokemon_por_forma(form_n)
     for pokemon in form_pokemones:
       mostrar_resumen(conseguir_resumen_pokemon(pokemon))
+    repetir_opciones()
 
   elif opcion == 3:
     print("\n#### Lista de pokemon por Habilidades  ####")
@@ -219,8 +229,8 @@ def poke_menu():
       Opcion 327:  Habilidad => shield
       '''
     )
-    print("\nIngresa la opcion del Habitad del Pokemón")
-    habilidad_n = int(input("\nIngrese una opcion de Habilidad: "))
+    print(BLUE+"\nIngresa la opcion del Habitad del Pokemón"+RESET)
+    habilidad_n = int(input(GREEN+"\nIngrese una opcion de Habilidad: "+RESET))
 
     if habilidad_n == 1:
       print(" #### Lista de pokemones con Habilidad: stench ####")
@@ -265,8 +275,8 @@ def poke_menu():
       Opcion 9:  Habitat => waters-edge
       '''
     )
-    print("\nIngresa la opcion del Habitat del Pokemón")
-    habitad_n = int(input("\nIngrese una opcion de Habitat: "))
+    print(BLUE+"\nIngresa la opcion del Habitat del Pokemón"+RESET)
+    habitad_n = int(input(GREEN+"\nIngrese una opcion de Habitat: "+RESET))
 
 
     if habitad_n == 1:
@@ -311,8 +321,8 @@ def poke_menu():
       Opcion 19:  Tipo => unknown             Opcion 20:  Tipo => shadow
       '''
     )
-    print("\nSelecciona la opcion del Tipo del Pokemón")
-    tipo_n = int(input("\nIngrese una opcion del tipo de pokemon: "))
+    print(BLUE+"\nSelecciona la opcion del Tipo del Pokemón"+RESET)
+    tipo_n = int(input(GREEN+"\nIngrese una opcion del tipo de pokemon: "+RESET))
 
     if tipo_n == 1:
       print(" #### Lista de pokemones con Tipo: normal ####")
