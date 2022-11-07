@@ -4,7 +4,9 @@ import os
 def __init__(self):
   self.__url = f"https://pokeapi.co/api/v2/"
 
+
 ####### MOSTRAR LISTA POR GENERACION #############
+
 def escoger_generacion(n_gen):
   lista_pokemones = []
   if __name__ == '__main__':
@@ -19,6 +21,7 @@ def escoger_generacion(n_gen):
                   name = pokemon['name']
                   lista_pokemones.append(name)
   return lista_pokemones
+
 
 ####### MOSTRAR LISTA POR FORMA #############
 
@@ -59,8 +62,6 @@ def listar_pokemon_por_habilidad(ability):
 
 
 ####### MOSTRAR LISTA POR TIPO #############
-
-
 
 
 def mostrar_resumen(resumen_pokemon_recibido):
@@ -107,16 +108,16 @@ def poke_menu():
   opcion = int(input("\n--> Ingresa la opción a ejecutar: "))
 
   if opcion == 1:
-    print("#### Lista pokemon por Generación  ####")
+    print("\n #### Lista pokemon por Generación  ####")
     print("\nIngresa una generación Pokemón del 1 al 8")
     num_generation = str(input("==> Ingrese  generación: "))
     lista_pokemones = escoger_generacion(num_generation)
     for pokemon in lista_pokemones:
       mostrar_resumen(conseguir_resumen_pokemon(pokemon))
-
     repetir_opciones()
+
   elif opcion == 2:
-    print("#### Lista de pokemon por Forma  ####")
+    print("\n #### Lista de pokemon por Forma  ####")
     print(
       '''
       Opcion 1:  Forma => ball
@@ -135,31 +136,31 @@ def poke_menu():
       Opcion 14: Forma => armor
       '''
     )
-    print("\nIngresa la opcion de la Forma del Pokemón")
-    form_n = int(input("\nIngrese la opcion de la forma a mostrar: "))
+    print("\nElija la opcion de la Forma del Pokemón")
+    form_n = int(input("\n==> Ingrese la opcion de la forma a mostrar: "))
 
     if form_n == 1:
-      print(" #### Lista de pokemones con forma: Ball ####")
+      print("\n #### Lista de pokemones con forma: Ball ####")
     elif form_n == 2:
-      print(" #### Lista de pokemones con forma: Squiggle ####")
+      print("\n  #### Lista de pokemones con forma: Squiggle ####")
     elif form_n == 3:
-      print(" #### Lista de pokemones con forma: Fish ####")
+      print("\n  #### Lista de pokemones con forma: Fish ####")
     elif form_n == 4:
-      print(" #### Lista de pokemones con forma: Arms ####")
+      print("\n  #### Lista de pokemones con forma: Arms ####")
     elif form_n == 5:
-      print(" #### Lista de pokemones con forma: Blob ####")
+      print("\n  #### Lista de pokemones con forma: Blob ####")
     elif form_n == 6:
-      print(" #### Lista de pokemones con forma: Upright ####")
+      print("\n  #### Lista de pokemones con forma: Upright ####")
     elif form_n == 7:
-      print(" #### Lista de pokemones con forma: Legs ####")
+      print("\n  #### Lista de pokemones con forma: Legs ####")
     elif form_n == 8:
-      print(" #### Lista de pokemones con forma: Quadruped ####")
+      print("v #### Lista de pokemones con forma: Quadruped ####")
     elif form_n == 9:
-      print(" #### Lista de pokemones con forma: Wings ####")
+      print("\n  #### Lista de pokemones con forma: Wings ####")
     elif form_n == 10:
-      print(" ##### Lista de pokemones con forma: Tentacles ####")
+      print("\n  ##### Lista de pokemones con forma: Tentacles ####")
     elif form_n == 11:
-      print(" #### Lista de pokemones con forma: Heads ####")
+      print("\n  #### Lista de pokemones con forma: Heads ####")
     elif form_n == 12:
       print(" #### Lista de pokemones con forma: Humanoid ####")
     elif form_n == 13:
@@ -172,10 +173,8 @@ def poke_menu():
     for pokemon in form_pokemones:
       mostrar_resumen(conseguir_resumen_pokemon(pokemon))
 
-    repetir_opciones()
-
   elif opcion == 3:
-    print("#### Lista de pokemon por Habilidades  ####")
+    print("\n#### Lista de pokemon por Habilidades  ####")
     print("Te mostramos algunas habilidades de referencia de las 327 que existen")
     print(
       '''
@@ -231,6 +230,4 @@ def poke_menu():
     
 ### main ###  
 poke_menu()
-
-
 
