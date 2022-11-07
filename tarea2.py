@@ -209,6 +209,7 @@ def poke_menu():
     form_pokemones = listar_pokemon_por_forma(form_n)
     for pokemon in form_pokemones:
       mostrar_resumen(conseguir_resumen_pokemon(pokemon))
+    repetir_opciones()
 
   elif opcion == 3:
     print("\n#### Lista de pokemon por Habilidades  ####")
