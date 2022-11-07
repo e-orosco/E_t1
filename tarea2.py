@@ -249,6 +249,7 @@ def poke_menu():
     repetir_opciones()
 
   elif opcion == 4:
+
     print("\n#### Lista de pokemon por Habitat  ####")
     print("Te mostramos algunas Habitat de referencia de las 327 que existen")
     print(
@@ -266,6 +267,7 @@ def poke_menu():
     )
     print("\nIngresa la opcion del Habitat del Pokemón")
     habitad_n = int(input("\nIngrese una opcion de Habitat: "))
+
 
     if habitad_n == 1:
       print(" #### Lista de pokemones con Habita: cave ####")
@@ -293,6 +295,7 @@ def poke_menu():
     repetir_opciones()
 
   elif opcion == 5:
+
     print("\n#### Lista de Tipo de pokemones  ####")
     print(
       '''
@@ -351,6 +354,7 @@ def poke_menu():
       print(" #### Lista de pokemones con Tipo: unknown  ####")
     elif tipo_n == 20:
       print(" #### Lista de pokemones con Tipo: shadow ####")
+      
     else:
       print("Opcion no valida")
     tipo_pokemones = listar_pokemon_por_tipo(tipo_n)
