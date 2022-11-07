@@ -75,7 +75,20 @@ def listar_pokemon_por_habitad(abith):
   return habitad_pokemones
 
 ####### MOSTRAR LISTA POR TIPO #############
+def listar_pokemon_por_tipo(type):
+  tipo_pokemones = []
+  if __name__ == '__main__':
+    url = f'https://pokeapi.co/api/v2/type/{type}'
+    response = requests.get(url)
+    if response.status_code == 200:
+      payload = response.json()
+      results = payload['pokemon']
 
+      if results:
+        for pokemon in results:
+          name = pokemon['pokemon']['name']
+          tipo_pokemones.append(name)
+  return tipo_pokemones
 
 
 def mostrar_resumen(resumen_pokemon_recibido):
@@ -279,6 +292,76 @@ def poke_menu():
     repetir_opciones()
 
   elif opcion == 5:
+    print("\n#### Lista de pokemon por Tipo de pokemones  ####")
+    print(
+      '''
+      Opcion 1:   Tipo => normal
+      Opcion 2:   Tipo => fighting
+      Opcion 3:   Tipo => flying
+      Opcion 4:   Tipo => poison
+      Opcion 5:   Tipo => ground
+      Opcion 6:   Tipo => rock
+      Opcion 7:   Tipo => bug
+      Opcion 8:   Tipo => ghost
+      Opcion 9:   Tipo => steel
+      Opcion 10:  Tipo => fire
+      Opcion 11:  Tipo => water
+      Opcion 12:  Tipo => grass
+      Opcion 13:  Tipo => electric
+      Opcion 14:  Tipo => psychic
+      '''
+    )
+    print("\nIngresa la opcion del Tipo del Pokemón")
+    tipo_n = int(input("\nIngrese una opcion del tipo de pokemon: "))
+
+    if tipo_n == 1:
+      print(" #### Lista de pokemones con Tipo: normal ####")
+    elif tipo_n == 2:
+      print(" #### Lista de pokemones con Tipo: fighting ####")
+    elif tipo_n == 3:
+      print(" #### Lista de pokemones con Tipo: flying ####")
+    elif tipo_n == 4:
+      print(" #### Lista de pokemones con Tipo: poison ####")
+    elif tipo_n == 5:
+      print(" #### Lista de pokemones con Tipo: ground ####")
+    elif tipo_n == 6:
+      print(" #### Lista de pokemones con Tipo: rock ####")
+    elif tipo_n == 7:
+      print(" #### Lista de pokemones con Tipo: bug ####")
+    elif tipo_n == 8:
+      print(" #### Lista de pokemones con Tipo: ghost ####")
+    elif tipo_n == 9:
+      print(" #### Lista de pokemones con Tipo: steel ####")
+    elif tipo_n == 10:
+      print(" #### Lista de pokemones con Tipo: fire ####")
+    elif tipo_n == 11:
+      print(" #### Lista de pokemones con Tipo: water ####")
+    elif tipo_n == 12:
+      print(" #### Lista de pokemones con Tipo: grass ####")
+    elif tipo_n == 13:
+      print(" #### Lista de pokemones con Tipo: electric ####")
+    elif tipo_n == 14:
+      print(" #### Lista de pokemones con Tipo: psychic ####")
+    elif tipo_n == 8:
+      print(" #### Lista de pokemones con Tipo: ghost ####")
+    elif tipo_n == 9:
+      print(" #### Lista de pokemones con Tipo: steel ####")
+    elif tipo_n == 10:
+      print(" #### Lista de pokemones con Tipo: fire ####")
+    elif tipo_n == 11:
+      print(" #### Lista de pokemones con Tipo: water ####")
+    elif tipo_n == 12:
+      print(" #### Lista de pokemones con Tipo: grass ####")
+    elif tipo_n == 13:
+      print(" #### Lista de pokemones con Tipo: electric ####")
+    elif tipo_n == 14:
+      print(" #### Lista de pokemones con Tipo: psychic ####")
+    else:
+      print("Opcion no valida")
+    tipo_pokemones = listar_pokemon_por_tipo(tipo_n)
+    for pokemon in tipo_pokemones:
+      mostrar_resumen(conseguir_resumen_pokemon(pokemon))
+
       repetir_opciones()
     
 ### main ###  
